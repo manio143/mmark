@@ -1017,8 +1017,14 @@ func (options *html) DocumentHeader(out *bytes.Buffer, first bool) {
 		return
 	}
 
-	out.WriteString("<!DOCTYPE html>\n")
-	out.WriteString("<html>\n")
+	if options.head == "" {
+		out.WriteString("<!DOCTYPE html>\n")
+		out.WriteString("<html>\n")
+	} else {
+		file, err := ioutil.ReadFile(options.head)
+		if err != nil { panic(err) }
+		out.WriteString(string(file))
+	}
 }
 
 func (options *html) DocumentFooter(out *bytes.Buffer, first bool) {

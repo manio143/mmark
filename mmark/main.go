@@ -18,7 +18,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/miekg/mmark"
+	".."
 )
 
 var githash string
